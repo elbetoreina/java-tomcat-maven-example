@@ -3,9 +3,11 @@ pipeline {
     stages {
         stage ('Initialize') {
             steps {
+
+                echo ${PATH}
                 sh '''
                 echo "PATH = ${PATH}"
-                echo "M2_HOME = $(env.M2_HOME)"
+                echo "M2_HOME = ${M2_HOME}"                
                 '''
             }
         }
@@ -13,6 +15,7 @@ pipeline {
         stage ('Build'){
             steps{
                 echo 'Hello World'
+                
 
             }
         }
