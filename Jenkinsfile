@@ -1,30 +1,13 @@
 pipeline {
     agent any
     stages {
-        stage ('Initialize') {
+        stage ('Build Servlet Project') {
             steps {
-
-                echo "${PATH}"
-                sh '''
-                echo "PATH = ${PATH}"
-                echo "M2_HOME = ${M2_HOME}"                
-                '''
+                sh 'mvn clean package'
             }
-        }
-
-        stage ('Build'){
-            steps{
-                echo 'Hello World'
-                
-
-            }
-        }
-
-        stage ('Deploy'){
-            steps{
-                echo 'Deployed Artifact'
-                
-
+            post{
+                echo 'Now archiving...'
+                archiveArtifacts artifacts : '**/*.war'
             }
         }
     }
