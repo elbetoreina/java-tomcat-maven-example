@@ -29,7 +29,7 @@ pipeline {
                 success{
                     echo 'Deployment on Production is Successful'
                 }
-                failiure{
+                failure{
                     echo 'Deployment Failure on Production'
                 }
             }
