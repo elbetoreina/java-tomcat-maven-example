@@ -17,5 +17,24 @@ pipeline {
                 build job : 'deploy_tomcat_staging_pipeline'
             }
         }
+        stage('Deploy to production'){
+            steps{
+                timeout(time:5,unit:'Days'){
+                    input message: 'Approve Production Deployment'
+                }
+
+                build job: 'deploy_tomcat_production_pipeline'
+            }
+            post{
+                success{
+                    echo 'Deployment on Production is Successful'
+                }
+                failiure{
+                    echo 'Deployment Failure on Production'
+                }
+            }
+        }
+
+
     }
 }
